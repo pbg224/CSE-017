@@ -1,0 +1,79 @@
+import java.util.Scanner;
+public class HW1 {
+	public static void main(String args [])
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.println("Please enter the amount of banks(integer): ");
+		int number_banks = input.nextInt();
+		System.out.println("Enter the minimum value for assets:");
+		int limit = input.nextInt();
+		input.nextLine();
+		double[] balance = new double[number_banks];
+		double[][] borrowers = new double[number_banks][number_banks];
+		double[]assets = new double[number_banks];
+		int[]unsafe_banks = new int[number_banks];
+		readBankInfo(input, balance, borrowers);
+		//calculateAssets(assets, balance, borrowers);
+		
+		
+	}
+	
+	public static void readBankInfo(Scanner in, double[]balance, double[][]borrowers)
+	{
+		for(int i = 0; i < borrowers[0].length - 1; i++)
+		{
+			int num_of_borrowers = 0;
+			System.out.printf("Enter bank %d balance and borrowers\n", i);
+			balance[i] = in.nextDouble();
+			num_of_borrowers = in.nextInt();
+			int j = 0;
+			while(num_of_borrowers > 0)
+			{
+				 j = in.nextInt();
+				 borrowers[i][j] = in.nextInt();
+				 num_of_borrowers--;
+			}
+		}
+	}
+	
+	public static void calculateAssets(double[] assets, double[]balance, double[][]borrowers )
+	{
+		for(int i = 0; i < borrowers[0].length - 1; i++)
+		{
+			for(int j = 0; j < borrowers[i].length - 1; i++)
+			{
+				assets[i] =  balance[i] + borrowers[i][j];
+			}
+		}
+		
+	}
+	
+	public static void updateBorrowers(int [] ub, double [][] borrowers, int l)
+	{
+		int j = 0;
+		for(int i = 0; i < ub.length; i++)
+		{
+			
+		}
+	}
+	
+	public static void printUnsafeBanks(int l, double[] a, double[] ub)
+	{
+		int x = 0;
+		for(int i = 0; i < a.length; i++)
+		{
+			if(a[i] < l )
+			{
+				ub[x] = i;
+				x++;
+				System.out.printf("Business &f is unsafe\n", i);
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+}
